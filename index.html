@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>购书云-总部</title>
+    <link rel="icon" href="src/images/logo.png" type="image/x-icon" />
+    <!-- css reset -->
+    <link rel="stylesheet" href="//cdn.bootcss.com/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_wlii0iq4vehzolxr.css">
+    <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style media="screen">
+        html,
+        body,
+        #app {
+            height: 100%;
+        }
+
+        div.container {
+            height: 100%;
+        }
+
+        /* 内容部分，上方标题样式 */
+        .top_bar {
+            background-color: white;
+            padding: 0 26px;
+            font-size: 18px;
+        }
+        .top_bar  .title {
+            height: 48px;
+            line-height: 48px;
+            color: $font_normal;
+        }
+
+        /* 内容部分， 下方内容 */
+        .content_inner{
+            margin: 8px;
+            padding: 16px;
+            background-color: #FFFFFF;
+            position: relative;
+        }
+
+        /* amap 提示框样式 hack */
+        .amap-sug-result{
+            z-index: 999999;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <router-view></router-view>
+    </div>
+    <script src="//cdn.bootcss.com/moment.js/2.17.1/moment.min.js"></script>
+    <script src="//cdn.bootcss.com/moment.js/2.17.1/locale/zh-cn.js"></script>
+    <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    <script src="/dist/build.js" charset="utf-8"></script>
+</body>
+
+</html>
