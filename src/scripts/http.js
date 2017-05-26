@@ -2,7 +2,7 @@
 import Axios from 'axios'
 import Vue from 'vue'
 const axios = Axios.create({
-    // baseURL: 'http://115.28.109.6:8870/',
+    baseURL: 'http://master-interface.goushuyun.com/',
     headers: {
         'Content-Type': 'application/json'
     }
