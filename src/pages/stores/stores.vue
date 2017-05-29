@@ -32,10 +32,12 @@
         </el-col>
       </el-row>
 
-      <div style="margin-top:20px;">
-        <el-table :data="stores" border style="width: 100%">
-          <el-table-column type="index" width="50"></el-table-column>
+      <div style="margin:20px 0;">
+        <el-table :data="stores" border style="width: 100%" @sort-change="sortChange">
+          <el-table-column type="index" width="60"></el-table-column>
           <el-table-column prop="store_name" label="云店名" width="160"></el-table-column>
+          <el-table-column prop="total_sales" sortable="custom" label="总销售额（元）（排序功能）" width="150"></el-table-column>
+          <el-table-column prop="total_goods" label="上架书籍种类数" width="100"></el-table-column>
           <el-table-column label="经营学校（后续添加按学校模糊搜索功能）" width="310">
             <template scope="scope">
               <el-tooltip v-if="scope.row.schools" placement="top" effect="dark" :enterable="false">
@@ -102,6 +104,8 @@
           </el-table-column>
         </el-table>
       </div>
+      <el-pagination :current-page="page" :total="total_count" :page-sizes="[10, 20, 50, 100]" :page-size="size" layout="total, sizes, prev, pager, next, jumper" @size-change="handleSizeChange" @current-change="handleCurrentChange">
+      </el-pagination>
 
       <el-dialog :title="'备注信息-' + remark_dialog.store_name" :visible.sync="remark_dialog.visible" size="tiny" :close-on-click-modal="false">
         <el-input type="textarea" :autosize="{ minRows: 5, maxRows: 15 }" placeholder="请输入内容" v-model="remark_dialog.update_remark"></el-input>
@@ -137,7 +141,12 @@ export default {
                 index: 0,
                 store_name: '',
                 update_remark: ''
-            }
+            },
+
+            page: 0,
+            size: 10,
+            sort: 0,
+            total_count: 0
         }
     },
     mounted() {
@@ -149,14 +158,19 @@ export default {
                 "find_status": this.find_status, //0 全部 1 未过期 2 过期 3 即将15天到期
                 "admin_mobile": this.admin_mobile,
                 "store_name": this.store_name,
-                "intention": this.intention //0 全部 1未确认意愿 2有购买意愿 3无购买意愿 4已购买
+                "intention": this.intention, //0 全部 1未确认意愿 2有购买意愿 3无购买意愿 4已购买
+                "page": this.page,
+                "size": this.size,
+                "sort": this.sort
             }).then(resp => {
                 if (resp.data.message == 'ok') {
+                    this.total_count = resp.data.total_count
                     this.stores = resp.data.data.map(el => {
                         el.store_create_at = moment(el.store_create_at * 1000).format('L')
                         el.store_expire_at = moment(el.store_expire_at * 1000).format('L')
                         el.update_expire_at = el.store_expire_at
                         el.charges = priceFloat(el.charges)
+                        el.total_sales = priceFloat(el.total_sales)
                         el.poundage = parseFloat(el.poundage / 10).toFixed(1)
                         el.update_intention = el.intention + ''
                         el.update_flag = false
@@ -164,6 +178,18 @@ export default {
                     })
                 }
             })
+        },
+        handleSizeChange(size) {
+            this.size = size
+            this.getStores()
+        },
+        handleCurrentChange(page) {
+            this.page = page
+            this.getStores()
+        },
+        sortChange() {
+            this.sort = (this.sort + 1) % 3
+            this.getStores()
         },
         handleSearchValue(type) {
             this.admin_mobile = ''

@@ -28,7 +28,7 @@ axios.interceptors.response.use(function(response) {
     }
     // relogin
     if(response.data.code == '11014'){
-        window.location.href = "http://localhost:9000/#"
+        window.location.href = "http://master.goushuyun.com/#/"
     }
     //handler error
     if(response.data.code != '00000'){

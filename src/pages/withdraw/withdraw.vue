@@ -20,7 +20,7 @@
           </el-input>
         </el-col>
       </el-row>
-      <div style="margin-top:20px;">
+      <div style="margin:20px 0;">
         <el-table :data="withdraw_list" border style="width: 100%">
           <el-table-column type="index" width="50"></el-table-column>
           <el-table-column prop="id" label="交易号" width="160"></el-table-column>
@@ -41,6 +41,8 @@
           </el-table-column>
         </el-table>
       </div>
+      <el-pagination :current-page="page" :total="total_count" :page-sizes="[10, 20, 50, 100]" :page-size="size" layout="total, sizes, prev, pager, next, jumper" @size-change="handleSizeChange" @current-change="handleCurrentChange">
+      </el-pagination>
     </div>
   </div>
 </template>
@@ -56,7 +58,11 @@ export default {
             status: '0',
             search_id: '',
 
-            withdraw_list: []
+            withdraw_list: [],
+
+            page: 0,
+            size: 10,
+            total_count: 0
         }
     },
     mounted() {
@@ -66,9 +72,12 @@ export default {
         withdrawList() {
             axios.post('/v1/master/withdraw_list', {
                 "id": this.search_id, // not required
-                "status": this.status // not required 0:all 1:pendding be accepted 2: in process 3:success(complted)
+                "status": this.status, // not required 0:all 1:pendding be accepted 2: in process 3:success(complted)
+                "page": this.page,
+                "size": this.size
             }).then(resp => {
                 if (resp.data.message == 'ok') {
+                    this.total_count = resp.data.total_count
                     this.withdraw_list = resp.data.data.map(el => {
                         el.apply_at = moment(el.apply_at * 1000).format('YYYY-MM-DD hh:mm:ss')
                         el.balance = priceFloat(el.balance)
@@ -84,6 +93,14 @@ export default {
                     })
                 }
             })
+        },
+        handleSizeChange(size) {
+            this.size = size
+            this.withdrawList()
+        },
+        handleCurrentChange(page) {
+            this.page = page
+            this.withdrawList()
         },
         searchById() {
             this.status = '0'
