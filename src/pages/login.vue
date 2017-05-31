@@ -146,7 +146,7 @@ export default {
                     }).then(resp => {
                         if (resp.data.message == 'ok') {
                             this.$router.push({
-                                name: 'master'
+                                name: 'home'
                             })
                         } else if (resp.data.message == 'notFound') {
                             this.$message.error("用户名或密码错误")

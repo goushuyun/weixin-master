@@ -74,12 +74,12 @@
         </el-row>
 
         <el-menu theme="dark" :default-openeds="submenu_openeds" :router="true" unique-opened>
-            <el-submenu index="0">
+            <el-submenu index="1">
               <template slot="title"><i class="el-icon-setting"></i>基础功能</template>
-              <el-menu-item index="/master/withdraw">
+              <el-menu-item index="1-1" :route="{name:'withdraw'}">
                   <i class="fa fa-delicious" aria-hidden="true"></i>提现申请
               </el-menu-item>
-              <el-menu-item index="/master/stores">
+              <el-menu-item index="1-2" :route="{name:'stores'}">
                   <i class="fa fa-life-ring" aria-hidden="true"></i>注册商家
               </el-menu-item>
             </el-submenu>
@@ -98,7 +98,7 @@
 export default {
     data() {
         return {
-            submenu_openeds: ['0']
+            submenu_openeds: ['1']
         }
     },
     mounted() {
