@@ -28,7 +28,7 @@
         font-size: 14px;
         color: white;
         text-align: left;
-        line-height: 48px;
+        line-height: 22px;
     }
     i.icon {
         color: white;
@@ -42,7 +42,7 @@
 }
 
 #content {
-    background-image: url("http://7xvl2k.com1.z0.glb.clouddn.com/bg_3.jpg");
+    background-image: url("http://okxy9gsls.bkt.clouddn.com/bg8.jpg");
     background-attachment: fixed;
     background-size: 100%, 100%;
     padding-left: 180px;
@@ -65,7 +65,7 @@
             </el-col>
 
             <el-col :span="14">
-                <p class="shop_name">英雄联盟
+                <p class="shop_name">购书云总部
                     <router-link :to="{name:'login'}">
                         <i class="fa fa-power-off icon" aria-hidden="true"></i>
                     </router-link>
@@ -73,7 +73,7 @@
             </el-col>
         </el-row>
 
-        <el-menu theme="dark" mode="vertical" :router="true" unique-opened :default-active="menu_active">
+        <el-menu theme="dark" :default-openeds="submenu_openeds" :router="true" unique-opened>
             <el-submenu index="0">
               <template slot="title"><i class="el-icon-setting"></i>基础功能</template>
               <el-menu-item index="/master/withdraw">
@@ -98,7 +98,7 @@
 export default {
     data() {
         return {
-            vertical: '0'
+            submenu_openeds: ['0']
         }
     },
     mounted() {

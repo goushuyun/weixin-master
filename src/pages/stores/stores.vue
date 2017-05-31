@@ -36,7 +36,7 @@
         <el-table :data="stores" border style="width: 100%" @sort-change="sortChange">
           <el-table-column type="index" width="60"></el-table-column>
           <el-table-column prop="store_name" label="云店名" width="160"></el-table-column>
-          <el-table-column prop="total_sales" sortable="custom" label="总销售额（元）（排序功能）" width="150"></el-table-column>
+          <el-table-column prop="total_sales" sortable="custom" label="总销售额（元）" width="100"></el-table-column>
           <el-table-column prop="total_goods" label="上架书籍种类数" width="100"></el-table-column>
           <el-table-column label="经营学校（后续添加按学校模糊搜索功能）" width="310">
             <template scope="scope">
@@ -46,8 +46,9 @@
               </el-tooltip>
             </template>
           </el-table-column>
-          <el-table-column prop="admin_mobile" label="负责人手机" width="140"></el-table-column>
-          <el-table-column prop="store_create_at" label="创建日期" width="120"></el-table-column>
+          <el-table-column prop="admin_name" label="负责人姓名" width="150"></el-table-column>
+          <el-table-column prop="admin_mobile" label="负责人手机" width="150"></el-table-column>
+          <el-table-column prop="store_create_at" label="创建日期" width="150"></el-table-column>
           <el-table-column prop="store_expire_at" label="截止日期" width="150">
             <template scope="scope">
               <span v-if="!scope.row.update_flag">{{scope.row.store_expire_at}}</span>

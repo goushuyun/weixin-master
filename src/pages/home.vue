@@ -1,17 +1,16 @@
 <template lang="html">
   <div class="container">
     <div class="top_bar">
-      <h2 class="title">艾欧尼亚</h2>
+      <h2 class="title">首页</h2>
     </div>
     <div class="content_inner">
       <el-card class="box-card">
         <div slot="header" class="clearfix">
-          <span style="line-height: 36px;">匹配成功</span>
-          <el-button style="float: right;" type="text">进入游戏</el-button>
+          <span style="line-height: 36px;">团队成员</span>
         </div>
-        <div v-for="item in summoners" :key="o" class="text item">
-          {{item.position + '：' + item.name}}
-        </div>
+        <span v-for="(item, index) in summoners" :key="o" class="text item">
+            {{item.name + (index + 1 == summoners.length ? ' ' : '、')}}
+        </span>
       </el-card>
     </div>
   </div>

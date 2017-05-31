@@ -22,7 +22,7 @@
       </el-row>
       <div style="margin:20px 0;">
         <el-table :data="withdraw_list" border style="width: 100%">
-          <el-table-column type="index" width="50"></el-table-column>
+          <el-table-column type="index" width="60"></el-table-column>
           <el-table-column prop="id" label="交易号" width="160"></el-table-column>
           <el-table-column prop="apply_at" label="申请时间" width="180"></el-table-column>
           <el-table-column prop="store_name" label="云店名" width="160"></el-table-column>
