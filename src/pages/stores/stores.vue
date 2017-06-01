@@ -35,6 +35,7 @@
       <div style="margin:20px 0;">
         <el-table :data="stores" border style="width: 100%" @sort-change="sortChange">
           <el-table-column type="index" width="60"></el-table-column>
+          <el-table-column prop="store_id" label="云店 ID" width="150"></el-table-column>
           <el-table-column prop="store_name" label="云店名" width="160"></el-table-column>
           <el-table-column prop="total_sales" sortable="custom" label="总销售额（元）" width="100"></el-table-column>
           <el-table-column prop="total_goods" label="上架书籍种类数" width="100"></el-table-column>
