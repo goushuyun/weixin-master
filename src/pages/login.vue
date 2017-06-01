@@ -38,7 +38,7 @@
     <div style="height:20%;"></div>
 
     <div id="login_box">
-        <img class="logo" src="../images/logo.png" alt="logo">
+        <img class="logo" src="http://oqrffh696.bkt.clouddn.com/goushuyun_logo.png" alt="logo">
 
         <div class="tabs">
             <el-tabs v-model="activeName">
