@@ -49,8 +49,8 @@
           </el-table-column>
           <el-table-column prop="admin_name" label="负责人姓名" width="150"></el-table-column>
           <el-table-column prop="admin_mobile" label="负责人手机" width="150"></el-table-column>
-          <el-table-column prop="store_create_at" label="创建日期" width="150"></el-table-column>
-          <el-table-column prop="store_expire_at" label="截止日期" width="150">
+          <el-table-column prop="store_create_at" label="创建时间" width="180"></el-table-column>
+          <el-table-column prop="store_expire_at" label="截止时间" width="150">
             <template scope="scope">
               <span v-if="!scope.row.update_flag">{{scope.row.store_expire_at}}</span>
               <el-date-picker v-else v-model="scope.row.update_expire_at" type="date" size="small" style="width:110px" placeholder="选择日期"></el-date-picker>
@@ -168,7 +168,7 @@ export default {
                 if (resp.data.message == 'ok') {
                     this.total_count = resp.data.total_count
                     this.stores = resp.data.data.map(el => {
-                        el.store_create_at = moment(el.store_create_at * 1000).format('L')
+                        el.store_create_at = moment(el.store_create_at * 1000).format('YYYY-MM-DD HH:mm:ss')
                         el.store_expire_at = moment(el.store_expire_at * 1000).format('L')
                         el.update_expire_at = el.store_expire_at
                         el.charges = priceFloat(el.charges)
@@ -232,6 +232,10 @@ export default {
             let withdrawFeeReg = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/
             if (!withdrawFeeReg.test(store.update_charges)) {
                 this.$message.warning('金额格式不正确')
+                return
+            }
+            if (store.update_poundage < 0) {
+                this.$message.warning('手续费不能小于 0')
                 return
             }
             var data = {
