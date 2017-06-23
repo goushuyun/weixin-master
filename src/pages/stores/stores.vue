@@ -185,13 +185,15 @@ export default {
                         // 新增线上线下订单数量
                         let online_order_nums = 0
                         let offline_order_nums = 0
+                        let closed_order_nums = 0
                         el.school_order_nums.forEach(son => {
                             online_order_nums += son.online_order_num
                             offline_order_nums += son.offline_order_num
+                            closed_order_nums += son.closed_order_num
                         })
                         el.online_order_nums = online_order_nums
                         el.offline_order_nums = offline_order_nums
-                        el.total_order_nums = online_order_nums + offline_order_nums
+                        el.total_order_nums = online_order_nums + offline_order_nums + closed_order_nums
                         return el
                     })
                 }
