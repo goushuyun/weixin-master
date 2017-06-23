@@ -37,6 +37,11 @@
           <el-table-column type="index" width="60"></el-table-column>
           <el-table-column prop="store_id" label="云店 ID" width="150"></el-table-column>
           <el-table-column prop="store_name" label="云店名" width="160"></el-table-column>
+          <el-table-column prop="total_order_nums" label="订单量（线上/线下）" width="180">
+            <template scope="scope">
+              {{scope.row.total_order_nums}}（ {{scope.row.online_order_nums}}/{{scope.row.offline_order_nums}} ）
+            </template>
+          </el-table-column>
           <el-table-column prop="total_sales" sortable="custom" label="总销售额（元）" width="100"></el-table-column>
           <el-table-column prop="total_goods" label="上架书籍种类数" width="100"></el-table-column>
           <el-table-column label="经营学校（后续添加按学校模糊搜索功能）" width="310">
@@ -176,6 +181,17 @@ export default {
                         el.poundage = parseFloat(el.poundage / 10).toFixed(1)
                         el.update_intention = el.intention + ''
                         el.update_flag = false
+
+                        // 新增线上线下订单数量
+                        let online_order_nums = 0
+                        let offline_order_nums = 0
+                        el.school_order_nums.forEach(son => {
+                            online_order_nums += son.online_order_num
+                            offline_order_nums += son.offline_order_num
+                        })
+                        el.online_order_nums = online_order_nums
+                        el.offline_order_nums = offline_order_nums
+                        el.total_order_nums = online_order_nums + offline_order_nums
                         return el
                     })
                 }
