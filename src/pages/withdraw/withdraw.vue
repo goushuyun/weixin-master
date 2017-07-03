@@ -26,8 +26,9 @@
           <el-table-column prop="id" label="交易号" width="160"></el-table-column>
           <el-table-column prop="apply_at" label="申请时间" width="180"></el-table-column>
           <el-table-column prop="store_name" label="云店名" width="160"></el-table-column>
-          <el-table-column prop="balance" label="可提现金额" width="120"></el-table-column>
-          <el-table-column prop="withdraw_fee" label="提现金额" width="120"></el-table-column>
+          <el-table-column prop="withdraw_fee" label="提现金额（元）" width="120"></el-table-column>
+          <el-table-column prop="balance" label="剩余可提现金额（元）" width="120"></el-table-column>
+          <el-table-column prop="card_name" label="开户行" width="200"></el-table-column>
           <el-table-column prop="card_no" label="银行卡号" width="200"></el-table-column>
           <el-table-column prop="username" label="开卡人"  width="160"></el-table-column>
           <el-table-column prop="apply_phone" label="申请人手机" width="140"></el-table-column>

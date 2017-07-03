@@ -4,8 +4,8 @@
       <h2 class="title">注册商家</h2>
     </div>
     <div class="content_inner">
-      <el-row type="flex">
-        <el-col>
+      <el-form :inline="true">
+        <el-form-item>
           <el-radio-group v-model="intention" size="small" @change="getStores">
             <el-radio-button label="0">全部</el-radio-button>
             <el-radio-button label="1">未确认意愿</el-radio-button>
@@ -13,26 +13,29 @@
             <el-radio-button label="3">无购买意愿</el-radio-button>
             <el-radio-button label="4">已购买</el-radio-button>
           </el-radio-group>
-        </el-col>
-        <el-col>
+        </el-form-item>
+        <el-form-item>
           <el-radio-group v-model="find_status" size="small" @change="getStores">
             <el-radio-button label="0">全部</el-radio-button>
             <el-radio-button label="3">即将到期</el-radio-button>
             <el-radio-button label="2">已到期</el-radio-button>
             <el-radio-button label="1">未到期</el-radio-button>
           </el-radio-group>
-        </el-col>
-        <el-col>
-          <el-input placeholder="搜索值" v-model.trim="search_value" style="width:400px;float:right" size="small" icon="search" @input="inputSearchValue" :on-icon-click="getStores" @keyup.enter.native="getStores">
+        </el-form-item>
+        <el-form-item>
+          <el-input placeholder="搜索值" v-model.trim="search_value" size="small" icon="search" @input="inputSearchValue" :on-icon-click="getStores" @keyup.enter.native="getStores">
             <el-select v-model="search_type" style="width: 125px;" clearable slot="prepend" placeholder="筛选条件" size="small" @change="handleSearchValue">
                 <el-option label="云店名" value="store"></el-option>
                 <el-option label="负责人手机" value="mobile"></el-option>
             </el-select>
           </el-input>
-        </el-col>
-      </el-row>
+        </el-form-item>
+        <!-- <el-form-item>
+          <el-switch v-model="thousand" on-text="千单" off-text="全部" @change="getStores"></el-switch>
+        </el-form-item> -->
+      </el-form>
 
-      <div style="margin:20px 0;">
+      <div style="margin-bottom:20px;">
         <el-table :data="stores" border style="width: 100%" @sort-change="sortChange">
           <el-table-column type="index" width="60"></el-table-column>
           <el-table-column prop="store_id" label="云店 ID" width="150"></el-table-column>
@@ -137,6 +140,7 @@ export default {
             find_status: '0',
             search_value: '',
             search_type: '',
+            // thousand: false,
 
             admin_mobile: '',
             store_name: '',
