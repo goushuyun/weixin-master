@@ -79,13 +79,13 @@ export default {
                 if (resp.data.message == 'ok') {
                     this.total_count = resp.data.total_count
                     this.withdraw_list = resp.data.data.map(el => {
-                        el.apply_at = moment(el.apply_at * 1000).format('YYYY-MM-DD hh:mm:ss')
+                        el.apply_at = moment(el.apply_at * 1000).format('YYYY-MM-DD HH:mm:ss')
                         el.balance = priceFloat(el.balance)
                         el.withdraw_fee = priceFloat(el.withdraw_fee)
                         if (el.status == 2) {
-                            el.status_at = moment(el.accept_at * 1000).format('YYYY-MM-DD hh:mm:ss')
+                            el.status_at = moment(el.accept_at * 1000).format('YYYY-MM-DD HH:mm:ss')
                         } else if (el.status == 3) {
-                            el.status_at = moment(el.complete_at * 1000).format('YYYY-MM-DD hh:mm:ss')
+                            el.status_at = moment(el.complete_at * 1000).format('YYYY-MM-DD HH:mm:ss')
                         } else {
                             el.status_at = ''
                         }
