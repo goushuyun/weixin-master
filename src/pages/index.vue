@@ -73,7 +73,7 @@
             </el-col>
         </el-row>
 
-        <el-menu theme="dark" :default-openeds="submenu_openeds" :router="true" unique-opened>
+        <el-menu theme="dark" :default-openeds="submenu_openeds" :default-active="menu_active" :router="true" unique-opened>
             <el-submenu index="1">
               <template slot="title"><i class="el-icon-setting"></i>基础功能</template>
               <el-menu-item index="1-1" :route="{name:'withdraw'}">
@@ -98,12 +98,13 @@
 export default {
     data() {
         return {
-            submenu_openeds: ['1']
+            submenu_openeds: ['1'],
+            menu_active: '1-1'
         }
     },
     mounted() {
         this.$router.push({
-            name: 'home'
+            name: 'withdraw'
         })
     }
 }
