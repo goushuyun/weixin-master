@@ -60,7 +60,7 @@
         <el-row class="left_top">
             <el-col :span="10">
                 <router-link :to="{name:'home'}">
-                    <img src="http://okxy9gsls.bkt.clouddn.com/cloudshoplogo1.png" class="shop_logo">
+                    <img src="http://image1.goushuyun.cn/goushuyun_logo.png" class="shop_logo">
                 </router-link>
             </el-col>
 

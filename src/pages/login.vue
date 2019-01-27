@@ -38,7 +38,7 @@
     <div style="height:20%;"></div>
 
     <div id="login_box">
-        <img class="logo" src="http://oqrffh696.bkt.clouddn.com/goushuyun_logo.png" alt="logo">
+        <img class="logo" src="http://image1.goushuyun.cn/goushuyun_logo.png" alt="logo">
 
         <div class="tabs">
             <el-tabs v-model="activeName">
@@ -68,7 +68,7 @@
     </div>
     <!-- 底部信息条 -->
     <el-row class="bottom_bar">
-        <el-col :span="24">© 2017 购书云 版权所有 沪ICP备15022838号-2 </el-col>
+        <el-col :span="24">© 2019 购书云 版权所有 沪ICP备15022838号-2 </el-col>
     </el-row>
 </div>
 
